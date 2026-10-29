@@ -1,24 +1,86 @@
 # PROJECT PHANTOM — PHANTOM v1.0
 
-A locally hosted, three-stage web CTF lab for Windows + Docker Desktop. It uses fictional data and is intended for local training only. The target 10/10 difficulty is aspirational and has not been validated with external players.
+A locally hosted, three-stage cybersecurity CTF lab for Windows and Docker Desktop. It uses fictional data and is intended for authorized local training only.
 
-## Quick start (Windows)
-1. Install and start Docker Desktop.
-2. Extract this folder from `PROJECT_PHANTOM.zip`.
-3. Open PowerShell in the extracted `PROJECT_PHANTOM` directory.
-4. Run `py scripts/init_env.py`. Save the generated password shown in the terminal; do not share `.env`.
-5. Run `docker compose up --build -d`.
-6. Open <http://127.0.0.1:8787> and sign in as `phantom` with the generated password.
-7. Check health with `Invoke-WebRequest http://127.0.0.1:8787/health`.
+## Features
 
-To stop: `docker compose down`. Run `docker compose up -d` to restart; progress is stored in the named Docker volume. To preserve the database, use `docker compose down` (not `-v`). To delete all local progress, run `docker compose down -v` after backing up anything needed, then start again. Use `py scripts/reset_data.py` only for a local non-container run.
+- Three-stage web security challenge.
+- Simulated credential leakage, IDOR, CSRF, and path traversal.
+- Docker-based setup for local use.
+- Local progress storage using a Docker volume.
+- Security-focused configuration and documentation.
 
-## Local development without Docker
-Requires Python 3.12 and pip. Run `py scripts/init_env.py`, then `py -m pip install -r requirements.txt`, then `py app.py`. Open <http://127.0.0.1:8000>. This mode writes SQLite data to `./data/`.
+## Requirements
 
-## Notes
-- The published port is bound to `127.0.0.1`, not all interfaces.
-- The session secret and lab password are generated into `.env`; challenge flags are configured there and must never be pasted into public materials.
-- The four intentional categories are Credential Leakage, IDOR, CSRF, and Path Traversal. The path traversal behavior is safely simulated: it does not open arbitrary disk paths.
-- This is an educational lab, not a production authentication service. A local administrator can inspect or modify local files and state.
-- See `PLAYER_GUIDE.md`, `OWNER_WALKTHROUGH.md`, `SECURITY_REVIEW.md`, and `TEST_CHECKLIST.md`.
+- Windows 10/11
+- Docker Desktop with Docker Compose
+- Git (optional, for cloning the repository)
+
+## Quick Start — Windows
+
+1. Download or clone this repository.
+2. Open PowerShell in the project directory.
+3. Create a local `.env` file based on `.env.example`.
+4. Replace all placeholder values with unique local values. Use a strong password and a randomly generated session secret. Configure your own local challenge flags.
+5. Start the lab:
+
+   ```powershell
+   docker compose up --build -d
+   ```
+
+6. Open [http://127.0.0.1:8787](http://127.0.0.1:8787) in your browser and sign in using the administrator credentials you configured in `.env`.
+
+## Stop and Restart
+
+Stop the lab:
+
+```powershell
+docker compose down
+```
+
+Start it again:
+
+```powershell
+docker compose up -d
+```
+
+The named Docker volume preserves local progress when you stop the containers without removing the volume.
+
+**Warning:** `docker compose down -v` deletes the named volume and its stored progress.
+
+## Local Development Without Docker
+
+Requires Python 3.12 and pip.
+
+1. Create and configure `.env` as described above.
+2. Install dependencies:
+
+   ```powershell
+   py -m pip install -r requirements.txt
+   ```
+
+3. Run the application:
+
+   ```powershell
+   py app.py
+   ```
+
+4. Open [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+## Security Notes
+
+- This project is an educational lab, not a production authentication service.
+- The application is intended for local use.
+- Never commit `.env`, real passwords, session secrets, or private challenge flags.
+- The path traversal challenge is simulated and does not open arbitrary filesystem paths.
+- Use only in systems you own or are authorized to test.
+
+## Documentation
+
+- [Player Guide](PLAYER_GUIDE.md)
+- [Security Review](SECURITY_REVIEW.md)
+- [Test Checklist](TEST_CHECKLIST.md)
+
+## Disclaimer
+
+PROJECT PHANTOM is provided for educational and authorized security training purposes only.
