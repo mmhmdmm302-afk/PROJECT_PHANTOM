@@ -1,0 +1,23 @@
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Local data and databases
+data/
+*.sqlite3
+
+# Challenge secrets and owner-only walkthroughs
+OWNER_WALKTHROUGH.md
+challenge_data/
+
+# Scripts containing challenge flags
+scripts/init_env.py

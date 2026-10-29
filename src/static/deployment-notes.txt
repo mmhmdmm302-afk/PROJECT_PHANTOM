@@ -1,0 +1,14 @@
+PHANTOM / LEGACY DEPLOYMENT NOTES
+Build: 4.8.1-legacy
+Migration owner: platform-ops
+
+A temporary credential was copied into the migration handoff for the fictional
+legacy telemetry service. The account is not a human login and must never be
+used outside this synthetic exercise.
+
+Legacy service account: svc_legacy
+Temporary lab credential: ghost-in-the-machine
+
+Hint: the service inventory identifies which internal records service accepted
+this legacy account. The first flag is provided to players only through the
+server-side verification workflow; do not put flags in public artifacts.

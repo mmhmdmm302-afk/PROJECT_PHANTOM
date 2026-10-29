@@ -1,0 +1,22 @@
+services:
+  phantom:
+    build: .
+    container_name: project-phantom
+    env_file: .env
+    environment:
+      PHANTOM_DATA_DIR: /app/data
+      PHANTOM_HOST: 0.0.0.0
+    ports:
+      - "127.0.0.1:8787:8000"
+    volumes:
+      - phantom_data:/app/data
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,noexec,nosuid,nodev
+volumes:
+  phantom_data:

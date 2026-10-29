@@ -1,0 +1,8 @@
+PHANTOM SYNTHETIC SERVICE INVENTORY
+-----------------------------------
+telemetry-gateway: retired
+records-api: internal training records
+archive-viewer: isolated evidence sandbox
+
+The retired telemetry service account was retained for migration validation.
+All names and details in this inventory are fabricated for the lab.

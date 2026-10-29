@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block title %}Request Denied — PHANTOM{% endblock %}{% block content %}<section class="panel empty"><div class="eyebrow">REQUEST TERMINATED / {{ code }}</div><h1>Access <em>denied.</em></h1><p class="muted">{{ message }}</p><a class="primary" href="{{ url_for('dashboard') }}">Return to operations</a></section>{% endblock %}

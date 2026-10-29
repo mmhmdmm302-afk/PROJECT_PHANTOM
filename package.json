@@ -1,0 +1,1 @@
+{"name":"project-phantom","version":"1.0.0","private":true,"description":"Local isolated cybersecurity CTF training lab","scripts":{"start":"python app.py","test":"python -m unittest discover -s tests -v"}}
